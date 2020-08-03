@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="login.html">
+    <title>Register Panel</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <form action="">
+                    <div class="form-group">
+                        <label for="login">Name</label>
+                        <input type="text" id="login" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Password">
+                    </div>
+                    <button id="btnValidate" class="btn btn-success">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        let database = [{
+           login: "Abasaga",
+            password: "abasaga123" 
+
+        },
+        {
+            login: "Rufi",
+            password: "rufi123"
+        },
+        {
+            login: "Ibrahim",
+            password: "ibrahim123"
+        },
+        {login: "Saleh",
+            password: "saleh123"
+            
+        },
+        {
+            login: "Sumeyye",
+            password: "Sumeyye123"
+        },
+        {
+            login: "Ismayil",
+            password: "ismayil123"
+        }];
+        document.getElementById("btnValidate").addEventListener("click", function (e) {
+            e.preventDefault();
+
+            let lgn = document.getElementById("login").value;
+            let pwd = document.getElementById("password").value;
+            let found = false;
+            for (let user in database) {
+                if (database[user]["login"] == lgn && database[user]["password"] == pwd) {
+                    found = true;
+                    let userObject = {
+                        userName: database[user]["login"],
+                        userPassword: database[user]["password"]
+                    };
+                    sessionStorage["userObj"] = JSON.stringify(userObject);
+                }
+            }
+
+            if (found) {
+                localStorage.setItem("logined", "ok");
+                document.location.href = "login.html";
+            } else {
+                alert("Login, password ve e-mail yanlishdir");
+            }
+        });
+    </script>
+
+    <script>
+        let person ={
+            name:"Saleh",
+            surname:"Mammadli",
+            getFullInformation: function(){
+                return`Hello my name is ${this.name} and my surname is ${this.surname}`;
+            }
+        }
+        function Person(firstName,lastName) {
+            this.name = firstName;
+            this.surname = lastName;
+            this.getFullInformation = function () {
+                return`Hello my name is ${this.name} and my surname is ${this.surname}`;
+            }
+        }
+         
+        let firstPerson = new Person("Abasaga","Abasov");
+
+        let secondPerson = new Person("Rufi","Eliyev");
+
+        let thirdPerson = new Person("Ibrahim","Rehimli");
+
+        let fourthPerson = new Person("Saleh","Mammadli");
+    </script>
+</body>
+
+</html>

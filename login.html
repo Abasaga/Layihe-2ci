@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>login</title>
+</head>
+<body>
+    <script>
+        let lg = localStorage.getItem("logined");
+        if(lg ==null || lg ==undefined){
+            document.localStorage.html ="register.html"
+        }
+    </script>
+    <h1>Salam hormetli isdifadechi <i id="userN"></i></h1>
+    <h1>isdifadechinin  nomresi <i id="userP"></i></h1>
+    <script>
+        let openedObject = JSON.parse(sessionStorage["userObj"]);
+        
+        document.getElementById("userN").innerText = openedObject.userName;
+        document.getElementById("userP").innerText = openedObject.userPassword;
+    </script>
+</body>
+</html>
